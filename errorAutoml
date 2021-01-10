@@ -1,0 +1,55 @@
+
+---------------------------------------------------------------------------
+ValidationException                       Traceback (most recent call last)
+<ipython-input-13-4374fa78fad2> in <module>
+      1 # Submit your automl run
+----> 2 automl_run = exp.submit(automl_config, show_output = True)
+
+/anaconda/envs/azureml_py36/lib/python3.6/site-packages/azureml/core/experiment.py in submit(self, config, tags, **kwargs)
+    218         submit_func = get_experiment_submit(config)
+    219         with self._log_context("submit config {}".format(config.__class__.__name__)):
+--> 220             run = submit_func(config, self.workspace, self.name, **kwargs)
+    221         if tags is not None:
+    222             run.set_tags(tags)
+
+/anaconda/envs/azureml_py36/lib/python3.6/site-packages/azureml/train/automl/automlconfig.py in _automl_static_submit(automl_config_object, workspace, experiment_name, **kwargs)
+     98             compute_target,
+     99             parent_run_id,
+--> 100             show_output)
+    101 
+    102         automl_run.add_properties(global_tracking_info_registry.gather_all(settings.path))
+
+/anaconda/envs/azureml_py36/lib/python3.6/site-packages/azureml/train/automl/automlconfig.py in _start_execution(experiment, settings_obj, fit_params, run_config, compute_target, parent_run_id, show_output)
+    197             package_utilities._get_package_incompatibilities(
+    198                 packages=package_utilities.AUTOML_PACKAGES,
+--> 199                 ignored_dependencies=package_utilities._PACKAGES_TO_IGNORE_VERSIONS
+    200             )
+    201         automl_run = _default_execution(experiment, settings_obj, fit_params, True, show_output, parent_run_id)
+
+/anaconda/envs/azureml_py36/lib/python3.6/site-packages/azureml/automl/core/package_utilities.py in _get_package_incompatibilities(packages, ignored_dependencies, is_databricks_run)
+    428                         missing_packages_message='\n'.join(messages),
+    429                         reference_code=ReferenceCodes._PACKAGE_INCOMPATIBILITIES_FOUND,
+--> 430                         validated_requirements_file_path=VALIDATED_REQ_FILE_PATH
+    431                     )
+    432                 )
+
+ValidationException: ValidationException:
+	Message: Install the required versions of packages using the requirements file. Requirements file location: /anaconda/envs/azureml_py36/lib/python3.6/site-packages/azureml/automl/core/validated_linux_requirements.txt. Alternatively, use remote target to avoid dependency management. 
+Package name/Required version/Installed version
+azureml-core/pyopenssl<20.0.0/pyOpenSSL 20.0.0
+	InnerException: None
+	ErrorResponse 
+{
+    "error": {
+        "code": "UserError",
+        "message": "Install the required versions of packages using the requirements file. Requirements file location: /anaconda/envs/azureml_py36/lib/python3.6/site-packages/azureml/automl/core/validated_linux_requirements.txt. Alternatively, use remote target to avoid dependency management. \nPackage name/Required version/Installed version\nazureml-core/pyopenssl<20.0.0/pyOpenSSL 20.0.0",
+        "target": "azureml-core",
+        "inner_error": {
+            "code": "NotSupported",
+            "inner_error": {
+                "code": "IncompatibleOrMissingDependency"
+            }
+        },
+        "reference_code": "435ab938-fd87-49bc-932e-6eec0d6aee4f"
+    }
+}
