@@ -38,22 +38,6 @@ def clean_data(data):
     y_df = x_df.pop("y").apply(lambda s: 1 if s == "yes" else 0)
     return x_df,y_df
 
-
-# TODO: Create TabularDataset using TabularDatasetFactory
-# Data is located at:
-# "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
-path = 'https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv'
-ds = TabularDatasetFactory.from_delimited_files(path, infer_column_types=True, separator=',', header=True)
-x, y = clean_data(ds)
-
-# TODO: Split data into train and test sets.
-
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state = 42)
-
-data = {'train': {'X': x_train, 'y': y_train},'test': {'X': x_test, 'y': y_test}}
-
-run = Run.get_context()
-
 def main():
     # Add arguments to script
     parser = argparse.ArgumentParser()
@@ -63,6 +47,21 @@ def main():
 
     args = parser.parse_args()
 
+    
+    # TODO: Create TabularDataset using TabularDatasetFactory
+    # Data is located at:
+    # "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
+    path = 'https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv'
+    ds = TabularDatasetFactory.from_delimited_files(path, infer_column_types=True, separator=',', header=True)
+    x, y = clean_data(ds)
+
+    # TODO: Split data into train and test sets.
+
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state = 42)
+
+    data = {'train': {'X': x_train, 'y': y_train},'test': {'X': x_test, 'y': y_test}}
+
+    run = Run.get_context()  
     run.log("Regularization Strength:", np.float(args.C))
     run.log("Max iterations:", np.int(args.max_iter))
 
@@ -70,6 +69,8 @@ def main():
 
     accuracy = model.score(x_test, y_test)
     run.log("Accuracy", np.float(accuracy))
+    os.makedirs('./outputs', exist_ok=True)
+    joblib.dump(model,'./outputs/model.joblib')
 
 if __name__ == '__main__':
     main()
