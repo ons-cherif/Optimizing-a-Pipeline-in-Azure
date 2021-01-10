@@ -1,0 +1,25 @@
+2021/01/10 19:30:30 Attempt 1 of http call to http://10.0.0.5:16384/sendlogstoartifacts/info
+2021/01/10 19:30:30 Attempt 1 of http call to http://10.0.0.5:16384/sendlogstoartifacts/status
+[2021-01-10T19:30:31.851539] Entering context manager injector.
+[context_manager_injector.py] Command line Options: Namespace(inject=['ProjectPythonPath:context_managers.ProjectPythonPath', 'RunHistory:context_managers.RunHistory', 'TrackUserError:context_managers.TrackUserError'], invocation=['train.py', '--C', '1', '--max_iter', '40'])
+Script type = None
+Starting the daemon thread to refresh tokens in background for process with pid = 99
+Entering Run History Context Manager.
+[2021-01-10T19:30:35.241047] Current directory: /mnt/batch/tasks/shared/LS_root/jobs/quick-starts-ws-134242/azureml/hd_f3acbfa3-c322-48f3-9695-78d31b8b99d6_0/mounts/workspaceblobstore/azureml/HD_f3acbfa3-c322-48f3-9695-78d31b8b99d6_0
+[2021-01-10T19:30:35.241241] Preparing to call script [train.py] with arguments:['--C', '1', '--max_iter', '40']
+[2021-01-10T19:30:35.241352] After variable expansion, calling script [train.py] with arguments:['--C', '1', '--max_iter', '40']
+
+/opt/miniconda/lib/python3.6/site-packages/azureml/dataprep/api/dataflow.py:722: UserWarning: Your pandas and pyarrow versions are incompatible. Please install pyarrow>=0.12.0 for improved performance of to_pandas_dataframe. You can ensure the correct version is installed by running: pip install pyarrow>=0.12.0 --upgrade
+  warnings.warn('Your pandas and pyarrow versions are incompatible. '
+/opt/miniconda/lib/python3.6/site-packages/sklearn/linear_model/logistic.py:433: FutureWarning: Default solver will be changed to 'lbfgs' in 0.22. Specify a solver to silence this warning.
+  FutureWarning)
+Starting the daemon thread to refresh tokens in background for process with pid = 99
+
+
+[2021-01-10T19:30:57.481664] The experiment completed successfully. Finalizing run...
+Cleaning up all outstanding Run operations, waiting 900.0 seconds
+2 items cleaning up...
+Cleanup took 6.799566745758057 seconds
+[2021-01-10T19:31:04.567094] Finished context manager injector.
+2021/01/10 19:31:04 Attempt 1 of http call to http://10.0.0.5:16384/sendlogstoartifacts/status
+2021/01/10 19:31:04 Process Exiting with Code:  0
