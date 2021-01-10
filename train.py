@@ -43,12 +43,12 @@ def clean_data(data):
 # Data is located at:
 # "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
 path = 'https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv'
-ds = Dataset.Tabular.from_delimited_files(path, infer_column_types=True, separator=',', header=True)
+ds = TabularDatasetFactory.from_delimited_files(path, infer_column_types=True, separator=',', header=True)
 x, y = clean_data(ds)
 
 # TODO: Split data into train and test sets.
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.5, random_state = 42)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state = 42)
 
 data = {'train': {'X': x_train, 'y': y_train},'test': {'X': x_test, 'y': y_test}}
 
