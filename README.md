@@ -6,12 +6,21 @@ In this project, we build and optimize an Azure ML pipeline using the Python SDK
 This model is then compared to an Azure AutoML run.
 
 ## Summary
-**In 1-2 sentences, explain the problem statement: e.g "This dataset contains data about... we seek to predict..."**
+- This dataset contains data about information  related to a direct marketing campaign of a Portuguese banking institution and its attempts to get its clients to subscribe for a term deposit, we seek to predict if the client is subscribed for a term deposite or not and classify the predictions based on the personal and financial information by client.
 
-**In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
+- The best performing model was a Soft type of Voting Classifier (VotingEnsemble), using MaxAbcScaler and XGBoostClassifier which implements the Gradient tree boosting algorythm, as it's a well known for the effiency to predict accuracies. 
+
+This model was chosen among several models based on the highest accuracy, while tuning the hyperdrive parameters during the experiment.
+Getting good results or bad ones are always related to two important things: 
+ 1 - The dataset and the cleaning: In this project we a clean data method from a script which contains:
+       * Get the dataset as a csv from a link using TabularDatasetFactory and convert it to a DataFrame using pandas to clean it
+       * Convert string columns(education,job and contact) using get_dummies() function which aims to convert string simple column into a dataframe binary representation 
+      
+
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
+![alt_text](SkleanPipelineArchitecture.png)
 
 **What are the benefits of the parameter sampler you chose?**
 
