@@ -9,9 +9,7 @@ from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 from azureml.core.run import Run
 from azureml.data.dataset_factory import TabularDatasetFactory
-from azureml.core import Dataset
-# TODO: Create TabularDataset using TabularDatasetFactory
-# Data is located at:
+
 # "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
 path = 'https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv'
 ds = TabularDatasetFactory.from_delimited_files(path, infer_column_types=True, separator=',', header=True)
@@ -25,22 +23,20 @@ def clean_data(data):
     # Clean and one hot encode data
     x_df = data.to_pandas_dataframe().dropna()
     jobs = pd.get_dummies(x_df.job, prefix="job")
-    x_df.drop("job", inplace=True, axis=1)
-    x_df = x_df.join(jobs)
+    contact = pd.get_dummies(x_df.contact, prefix="contact")
+    education = pd.get_dummies(x_df.education, prefix="education")
+    x_df.drop(["job","contact","education"], inplace=True, axis=1)
+    x_df = x_df.join([jobs,contact,education])
+    
     x_df["marital"] = x_df.marital.apply(lambda s: 1 if s == "married" else 0)
     x_df["default"] = x_df.default.apply(lambda s: 1 if s == "yes" else 0)
     x_df["housing"] = x_df.housing.apply(lambda s: 1 if s == "yes" else 0)
     x_df["loan"] = x_df.loan.apply(lambda s: 1 if s == "yes" else 0)
-    contact = pd.get_dummies(x_df.contact, prefix="contact")
-    x_df.drop("contact", inplace=True, axis=1)
-    x_df = x_df.join(contact)
-    education = pd.get_dummies(x_df.education, prefix="education")
-    x_df.drop("education", inplace=True, axis=1)
-    x_df = x_df.join(education)
-    x_df["month"] = x_df.month.map(months)
-    x_df["day_of_week"] = x_df.day_of_week.map(weekdays)
     x_df["poutcome"] = x_df.poutcome.apply(lambda s: 1 if s == "success" else 0)
 
+    x_df["month"] = x_df.month.map(months)
+    x_df["day_of_week"] = x_df.day_of_week.map(weekdays)
+    
     y_df = x_df.pop("y").apply(lambda s: 1 if s == "yes" else 0)
     return x_df,y_df
 
