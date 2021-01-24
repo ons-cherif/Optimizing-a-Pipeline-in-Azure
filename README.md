@@ -26,7 +26,7 @@ Getting good results or bad ones are always related to two important things:
        * Convert string columns(education,job and contact) using get_dummies() function which aims to convert string simple column into a dataframe binary representation 
        
        
-![alt_text](SklearnPipelineArchitecture.png)
+![alt_text](SklearnPipelineArchitecture.PNG)
 
 **What are the benefits of the parameter sampler you chose?**
 
