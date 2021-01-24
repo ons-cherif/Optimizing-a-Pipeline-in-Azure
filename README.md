@@ -20,7 +20,9 @@ Getting good results or bad ones are always related to two important things:
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
-![alt_text](SkleanPipelineArchitecture.png)
+
+![alt_text](SkleanPipelineArchitecture.png)0
+
 
 **What are the benefits of the parameter sampler you chose?**
 
