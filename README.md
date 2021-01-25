@@ -20,32 +20,36 @@ Below a general pipeline architecture is provided to explain the workflow of usi
 ![alt_text](SklearnPipelineArchitecture.PNG)
 
 Getting good or bad results is related to how well prepared your model is? <br>
-The first part of the process will be to prepare the model for your experiment:<br>
-1 - **The dataset and the cleaning:** We used a Cleaning function included in the _train.py_ Script. <br>
-The main performed actions inside the script are: <br>
-   - Retrieve data from the specified path using TabularDatasetFactory method.<br>
-   - Convert the dataset to a binary representation, by applying the _SKLearn get_dummies()_ method , to use later with <br>
+**Data Preparation:** <br>
+The first part of the process will be to prepare the script to use. The main performed actions inside the _train.py_ script are: <br>
+   - Retrieve data from the specified path using the TabularDatasetFactory method.<br>
+   - Convert the dataset to a binary data representation by applying the _SKLearn get_dummies() method_, to use later with <br>
    - Split data into training and testing sets, using Sklearn function  *train_test_split* .<br>
-   - Apply the SKLearn _LogisticRegression_ classifier by specifying the sample parameters, then fit the split data.<br>
-   - Finally verify the accuracy and register the model.<br>
-The problem with handling predictions manually is the time lost while trying to tune the parameters seeking for the best result.<br>
-Hence, the benefit of Azure HyperDrive is finding the perfect fit by tuning the hyperdrive parameters among a pre-specified random set of your choice.
+   - Apply the SKLearn _LogisticRegression classifier_ by including the sample parameters, then fit the split data.<br>
+   - Finally, verify the calculated accuracy and register the best model.<br>
+The problem with manually handling predictions is the time lost while trying to tune the parameters seeking the best result.<br>
+Hence, the benefit of Azure HyperDrive is finding the perfect fit by tuning the hyperdrive parameters among a pre-specified random set of your choice.<br>
+**Data Training & Validation:** <br>
+This phase is a repeatable one as it will be running for each run of the experiment, specifying a random hyperparameter from a given list.
 To prepare the HyperDrive configuration, we need to set three major parameters including:<br>
-   1- Specify a parameter sampler: since we are using the SKLearn _LogisticRegression_ classifier we will be using:<br>
-      - The inverse of regularization strength _**C**_ with a default value of _1.0_, you need to specify a descrite set of options to sample from.<br>
+   1- Specify a parameter sampler: since we are using the SKLearn _LogisticRegression classifier_  we will be using:<br>
+      - The inverse of regularization strength _**C**_ with a default value of _1.0_, you need to specify a discrete set of options to sample from.<br>
       - And, the maximum number of iterations taken for the solvers to converge _**max_iter**_ <br>
       
-   2- Specify an early termination policy: Among three types, we decided to work with the _Bandit Policy_ which is classified as an agressive saving, as it will terminate any job based on a _slack_ criteria, and a _frequency_ and _delay_ interval for evaluation. <br>
-      - slack_factor: The slack is specified as a ratio used to calculate the allowed distance from the best performing experiment run.<br>
+   2- Specify an early termination policy: Among three types, we decided to work with the _Bandit Policy_, classified as an aggressive saving, as it will terminate any job based on a _slack_ criteria, and a _frequency_ and _delay_ interval for evaluation. <br>
+      - slack_factor: Specified as a ratio used to calculate the allowed distance from the best performing experiment run.<br>
       - evaluation_interval: Reflects the frequency for applying the policy.<br>
       - delay_evaluation: Reflects the number of intervals for which to delay the first policy evaluation.<br>
       
    3 - Create a SKLearn estimator to use later within the HyperDriveConfig definition.<br>
-The estimator contains the _source directory_ _ The path to the script directory _ , the _compute target_ and the _entry script_ _ The name of the script to use along the experiment _.<br>
-2- **The algorithm choice:** Choosing an algorithm for a model must base on the metrics you need to predict: Continuous or Discrete?<br>
-Since we want to estimate if the client did or not subscribe to a deposit term account, we applied the _SKLearn LogistigRegression_ classifier taking as parameters: the cleaned then split dataset into a training/testing dataset using SKLearn function *train_test_split* 
+   The estimator contains the _source directory_ The path to the script directory, the _compute target_, and the _entry script_ The name of the script to use along with the experiment. <br>
+After creating the HyperDriveConfig using the mentioned above parameters, we submit the experiment by specifying the recently created HyeperDrive configuration.<br>
+ **Model Deployment:** <br>
+ This last phase is related to provisioning, visioning, and scaling.
+ But for this project, we are focusing on the registration and the best-run model. <br>
+Besides, the experiment visualization, the different features and metrics, and the accuracy of the best-registred model.<br>
+ We must take advantage of this phase since it's directly related to CI/CD concept with Azure, we can proceed with an endpoint deployment for further use of the generated model.<br>
  
-
 **What are the benefits of the parameter sampler you chose?**
 
 **What are the benefits of the early stopping policy you chose?**
