@@ -6,27 +6,28 @@ In this project, we build and optimize an Azure ML pipeline using the Python SDK
 This model is then compared to an Azure AutoML run.
 
 ## Summary
-- This dataset contains data about information  related to a direct marketing campaign of a Portuguese banking institution and its attempts to get its clients to subscribe for a term deposit, we seek to predict if the client is subscribed for a term deposite or not and classify the predictions based on the personal and financial information by client.
+- This dataset contains information related to a direct marketing campaign of a Portuguese banking institution and if their clients did subscribe for a term deposit.
+We seek to predict if the client was subscribed for a- term deposit or not and classify the predictions based on clients' personal and financial information.
 
-- The best performing model was a Soft type of Voting Classifier (VotingEnsemble), using MaxAbcScaler and XGBoostClassifier which implements the Gradient tree boosting algorythm, as it's a well known for the effiency to predict accuracies. 
-
-This model was chosen among several models based on the highest accuracy, while tuning the hyperdrive parameters during the experiment.
-
-      
-
+- The best performing model was a SoftVotingClassifier (VotingEnsemble), using MaxAbcScaler and a Gradient tree boosting algorithm implemented within an XGBoostClassifier, as it's well known for the efficiency to predict accuracies. 
+This model has been chosen among several models based on the highest accuracy while tuning the hyperdrive parameters during the experiment.
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
 
-Getting good results or bad ones are always related to two important things: 
+A general pipeline architecture explaining the workflow of using Azure SDK with HyperDrive parameterization:
 
- 1 - The dataset and the cleaning: In this project we a clean data method from a script which contains:
- 
-       * Get the dataset as a csv from a link using TabularDatasetFactory and convert it to a DataFrame using pandas to clean it
-       * Convert string columns(education,job and contact) using get_dummies() function which aims to convert string simple column into a dataframe binary representation 
-       
-       
 ![alt_text](SklearnPipelineArchitecture.PNG)
+
+Getting good results or bad ones are always related to two important things when preparing our model: 
+
+1 - **The dataset and the cleaning: We used a Cleaing function included in the Train.py Script. <br>
+   - Get the dataset as a csv from a link using TabularDatasetFactory and convert it to a DataFrame using pandas to clean it.<br>
+   - Convert the extracted data into a binary dataframe representation that will be used later with the LogisticRegression classifier. We used Get_dummies() for the string type columns and lambda expressions for bolean columns, and returned x_df and y_df to be used later within the experiment.<br>
+   - We define
+2- **The algorithm choice:** The choice of the algorithm used in your model must be based on the metrics you need to predict: continious or discret?<br>
+Since we will be estimating if the client did subscribe or not to a deposit term, we applied Sklearn LogistigRegression classifier using the dataset we cleaned and splited to training/testing datasets using Sklearn function *train_test_split* 
+ 
 
 **What are the benefits of the parameter sampler you chose?**
 
