@@ -21,10 +21,10 @@ Below a general pipeline architecture is provided to explain the workflow of usi
 
 Actually, getting good or bad results, is related to how well your model is prepared: 
 
-1 - **The dataset and the cleaning: We used a Cleaing function included in the Train.py Script.** <br>
+1 - **The dataset and the cleaning: We used a Cleaning function included in the Train.py Script.** <br>
    - Use TabularDatasetFactory method to retreive data from the specified path.<br>
-   - Convert the extracted data into a binary dataframe representation that will be used later with the LogisticRegression classifier. We used Get_dummies() for the string type columns and lambda expressions for bolean columns, and returned x_df and y_df to be used at a later stage of the experiment.<br>
-   - We specify the Hyperparameters to be used during the experiment. For this cas, we will consider:
+   - Convert the extracted data into a binary dataframe representation that will be used later with the LogisticRegression classifier. We used Get_dummies() for the string type columns and lambda expressions for bolean columns, and returned x_df and y_df to be used at a later stage in the experiment.<br>
+   - Specify parameter sampler to use in the Hyperparameters to be used during the experiment. For this cas, we will consider:
       - The inverse of regularization strength: _**C**_<br>
    and <br>
       - The maximum number of iterations taken for the solvers to converge: _**max_iter**_<br>
