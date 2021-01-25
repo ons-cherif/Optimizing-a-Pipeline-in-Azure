@@ -19,18 +19,17 @@ Below a general pipeline architecture is provided to explain the workflow of usi
 
 ![alt_text](SklearnPipelineArchitecture.PNG)
 
-Actually, getting good or bad results, is related to how well your model is prepared: 
-
-1 - **The dataset and the cleaning: We used a Cleaning function included in the Train.py Script.** <br>
-   - Use TabularDatasetFactory method to retreive data from the specified path.<br>
-   - Convert the extracted data into a binary dataframe representation that will be used later with the LogisticRegression classifier. We used Get_dummies() for the string type columns and lambda expressions for bolean columns, and returned x_df and y_df to be used at a later stage in the experiment.<br>
-   - Specify parameter sampler to use in the Hyperparameters to be used during the experiment. For this cas, we will consider:
-      - The inverse of regularization strength: _**C**_<br>
-   and <br>
-      - The maximum number of iterations taken for the solvers to converge: _**max_iter**_<br>
-    
-2- **The algorithm choice:** The choice of the algorithm used in your model must be based on the metrics you need to predict: continious or discret?<br>
-Since we will be estimating if the client did subscribe or not to a deposit term, we applied Sklearn LogistigRegression classifier using the dataset we cleaned and splited to training/testing datasets using Sklearn function *train_test_split* 
+Getting good or bad results is related to how well prepared your model is? <br>
+1 - **The dataset and the cleaning:** We used a Cleaning function included in the Train.py Script. <br>
+   - Used the TabularDatasetFactory method to retrieve data from the specified path.<br>
+   - Converted the extracted data into a Dataframe representation to be used later with the LogisticRegression classifier.<br>
+We applied the _Sklearn get_dummies()_ method for a binary representation to use later.<br>
+   - Specify a parameter sampler to use in the Hyperparameters to be used during the experiment. For this case, we will consider:<br>
+      - The inverse of regularization strength _**C**_<br>
+      - The maximum number of iterations taken for the solvers to converge _**max_iter**_ <br>
+   - split data into training and testing sets, using Sklearn function  *train_test_split* .<br>
+2- **The algorithm choice:** Choosing an algorithm for a model must base on the metrics you need to predict: Continuous or Discrete?<br>
+Since we want to estimate if the client did or not subscribe to a deposit term account, we applied the _Sklearn LogistigRegression_ classifier taking as parameters: the cleaned then split dataset into a training/testing dataset using Sklearn function *train_test_split* 
  
 
 **What are the benefits of the parameter sampler you chose?**
