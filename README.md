@@ -29,6 +29,7 @@ The first part of the process will be to prepare the script to use. The main per
    - Finally, verify the calculated accuracy and register the best model.<br>
 The problem with manually handling predictions is the time lost while trying to tune the parameters seeking the best result.<br>
 Hence, the benefit of Azure HyperDrive is finding the perfect fit by tuning the hyperdrive parameters among a pre-specified random set of your choice.<br>
+
 **Data Training & Validation:** <br>
 This phase is a repeatable one as it will be running for each run of the experiment, specifying a random hyperparameter from a given list.
 To prepare the HyperDrive configuration, we need to set three major parameters including:<br>
