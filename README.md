@@ -35,6 +35,7 @@ This phase is a repeatable one as it will be running for each run of the experim
 To prepare the HyperDrive configuration, we need to set three major parameters including:<br>
 
    1- Specify a parameter sampler: since we are using the SKLearn _LogisticRegression classifier_  we will be using:<br>
+   
       - The inverse of regularization strength _**C**_ with a default value of _1.0_, you need to specify a discrete set of options to sample from.<br>
       - And, the maximum number of iterations taken for the solvers to converge _**max_iter**_ <br>
       
