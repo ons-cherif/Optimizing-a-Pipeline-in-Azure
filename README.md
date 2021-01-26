@@ -33,6 +33,7 @@ Hence, the benefit of Azure HyperDrive is finding the perfect fit by tuning the 
 **Data Training & Validation:** <br>
 This phase is a repeatable one as it will be running for each run of the experiment, specifying a random hyperparameter from a given list.
 To prepare the HyperDrive configuration, we need to set three major parameters including:<br>
+
    1- Specify a parameter sampler: since we are using the SKLearn _LogisticRegression classifier_  we will be using:<br>
       - The inverse of regularization strength _**C**_ with a default value of _1.0_, you need to specify a discrete set of options to sample from.<br>
       - And, the maximum number of iterations taken for the solvers to converge _**max_iter**_ <br>
@@ -44,7 +45,9 @@ To prepare the HyperDrive configuration, we need to set three major parameters i
       
    3 - Create a SKLearn estimator to use later within the HyperDriveConfig definition.<br>
    The estimator contains the _source directory_ The path to the script directory, the _compute target_, and the _entry script_ The name of the script to use along with the experiment. <br>
+   
 After creating the HyperDriveConfig using the mentioned above parameters, we submit the experiment by specifying the recently created HyeperDrive configuration.<br>
+
  **Model Deployment:** <br>
  This last phase is related to provisioning, visioning, and scaling.
  But for this project, we are focusing on the registration and the best-run model. <br>
