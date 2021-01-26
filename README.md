@@ -62,7 +62,7 @@ When we talk about using a parameter sampler, we need to highlight two steps:
    - **The hyperparameter type: Discrete or Continuous?** In our case, we used the discrete type because this project is about categorization. 
    - **The sampling type: Grid or Random or Bayesian sampling?** Based on the previous workshops, both grid and random yielded good results. However, and because all our hyperparameters values are discrete, we must apply the grid sampling.<br>
   
-Regarding the definition of this project search space, I used  _C_ and _iter_max_ hyperparameters by creating for each a dictionary with the appropriate parameter expression.
+For this project's search space definition, I used  _C_ and _iter_max_ hyperparameters and created for each a dictionary with the appropriate parameter expression.
 
 That being said, parameter sampler benefits are:<br>
 
