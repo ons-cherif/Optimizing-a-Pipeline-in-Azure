@@ -20,7 +20,7 @@ Below a general pipeline architecture is provided to explain the workflow of usi
 ![alt_text](SklearnPipelineArchitecture.PNG)
 
 Getting good or bad results is related to how well prepared your model is? <br>
-###**Data Preparation:** <br>
+### **Data Preparation:** <br>
 The first part of the process will be to prepare the script to use. The main performed actions inside the _train.py_ script are: <br>
    - Retrieve data from the specified path using the TabularDatasetFactory method.<br>
    - Convert the dataset to a binary data representation by applying the _SKLearn get_dummies() method_, to use later with <br>
@@ -30,7 +30,7 @@ The first part of the process will be to prepare the script to use. The main per
 The problem with manually handling predictions is the time lost while trying to tune the parameters seeking the best result.<br>
 Hence, the benefit of Azure HyperDrive is finding the perfect fit by tuning the hyperdrive parameters among a pre-specified random set of your choice.<br>
 
-###**Data Training & Validation:** <br>
+### **Data Training & Validation:** <br>
 This phase is a repeatable one as it will be running for each run of the experiment, specifying a random hyperparameter from a given list.
 To prepare the HyperDrive configuration, we need to set three major parameters including:<br>
 
@@ -50,7 +50,7 @@ To prepare the HyperDrive configuration, we need to set three major parameters i
    
 After creating the HyperDriveConfig using the mentioned above parameters, we submit the experiment by specifying the recently created HyeperDrive configuration.<br>
 
- ###**Model Deployment:** <br>
+ ### **Model Deployment:** <br>
  This phase is related to provisioning, visioning, access control, and scaling. However, as a first project, we focused on the registration of the  best-run model and how to explore its different metrics and features using Microsoft Azure ML studio tools.<br>
  
 And since it's directly related to CI/CD concept with Azure, we can proceed with an endpoint deployment for further use of the generated model.<br>
@@ -59,10 +59,11 @@ And since it's directly related to CI/CD concept with Azure, we can proceed with
 
 When we talk about using a parameter sampler, we need to highlight two steps:
 
-  **The hyperparameter type: Discrete or Continuous?** In our case, we used the discrete type because this project is about categorization. 
-  **The sampling type: Grid or Random or Bayesian sampling?**. <br> Based on the previous workshops, both grid and random yielded good results. <br> However, and because all our search space parameters are discrete, we must apply the grid sampling.<br>
+   - **The hyperparameter type: Discrete or Continuous?** In our case, we used the discrete type because this project is about categorization. 
+   - **The sampling type: Grid or Random or Bayesian sampling?**. <br> Based on the previous workshops, both grid and random yielded good results. However, and because all our hyperparameters values are discrete, we must apply the grid sampling.<br>
   
-Regarding the definition of this project search space, I used  _C_ and _iter_max_ hyperparameters by creating for each a dictionary with the appropriate parameter expression.<br>
+Regarding the definition of this project search space, I used  _C_ and _iter_max_ hyperparameters by creating for each a dictionary with the appropriate parameter expression.
+
 That being said, parameter sampler benefits are:<br>
 
    - Automate the finding hyperparameters configuration process that results in the best performance by simultaneously running experiments and optimizing hyperparameters.
