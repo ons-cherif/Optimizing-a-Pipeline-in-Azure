@@ -51,12 +51,22 @@ To prepare the HyperDrive configuration, we need to set three major parameters i
 After creating the HyperDriveConfig using the mentioned above parameters, we submit the experiment by specifying the recently created HyeperDrive configuration.<br>
 
  **Model Deployment:** <br>
- This last phase is related to provisioning, visioning, and scaling.
- But for this project, we are focusing on the registration and the best-run model. <br>
-Besides, the experiment visualization, the different features and metrics, and the accuracy of the best-registred model.<br>
- We must take advantage of this phase since it's directly related to CI/CD concept with Azure, we can proceed with an endpoint deployment for further use of the generated model.<br>
+ This phase is related to provisioning, visioning, access control, and scaling. However, as a first project, we focused on the registration of the  best-run model and how to explore its different metrics and features using Microsoft Azure ML studio tools.<br>
+ 
+And since it's directly related to CI/CD concept with Azure, we can proceed with an endpoint deployment for further use of the generated model.<br>
  
 **What are the benefits of the parameter sampler you chose?**
+
+When we talk about using a parameter sampler, we need to highlight two steps:
+
+  **The hyperparameter type: Discrete or Continuous?** In our case, we used the discrete type because this project is about categorization. 
+  **The sampling type: Grid or Random or Bayesian sampling?**. <br> Based on the previous workshops, both grid and random yielded good results. <br> However, and because all our search space parameters are discrete, we must apply the grid sampling.<br>
+  
+Regarding the definition of this project search space, I used  _C_ and _iter_max_ hyperparameters by creating for each a dictionary with the appropriate parameter expression.<br>
+That being said, parameter sampler benefits are:<br>
+
+   - Automate the finding hyperparameters configuration process that results in the best performance by simultaneously running experiments and optimizing hyperparameters.
+   - Decrease the process of computing expenses, errors, and trials' number.
 
 **What are the benefits of the early stopping policy you chose?**
 
