@@ -36,8 +36,8 @@ To prepare the HyperDrive configuration, we need to set three major parameters i
 
    1- Specify a parameter sampler: since we are using the SKLearn _LogisticRegression classifier_  we will be using:<br>
    
-      - The inverse of regularization strength _**C**_ with a default value of _1.0_, you need to specify a discrete set of options to sample from.<br>
-      - And, the maximum number of iterations taken for the solvers to converge _**max_iter**_ <br>
+   - The inverse of regularization strength _**C**_ with a default value of _1.0_, you need to specify a discrete set of options to sample from.<br>
+   - And, the maximum number of iterations taken for the solvers to converge _**max_iter**_ <br>
       
    2- Specify an early termination policy: Among three types, we decided to work with the _Bandit Policy_, classified as an aggressive saving, as it will terminate any job based on a _slack_ criteria, and a _frequency_ and _delay_ interval for evaluation. <br>
       - slack_factor: Specified as a ratio used to calculate the allowed distance from the best performing experiment run.<br>
