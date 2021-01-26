@@ -34,21 +34,21 @@ Hence, the benefit of Azure HyperDrive is finding the perfect fit by tuning the 
 This is a repeatable process for each run of the experiment, specifying a random hyperparameter from a given list of choices.
 To prepare the HyperDrive configuration, we need to set three major parameters including:<br>
 
-   1- Specify a parameter sampler: since we are using the SKLearn _LogisticRegression classifier_  we will be using:<br>
+   1- Specify a **parameter sampler**: since we are using the SKLearn _LogisticRegression classifier_  we will be using:<br>
    
    - The inverse of regularization strength _**C**_ with a default value of _1.0_, you need to specify a discrete set of options to sample from.<br>
    - And, the maximum number of iterations taken for the solvers to converge _**max_iter**_ <br>
       
-   2- Specify an early termination policy: Among three types, we decided to work with the _Bandit Policy_, classified as an aggressive saving, as it will terminate any job based on a _slack_ criteria, and a _frequency_ and _delay_ interval for evaluation. <br>
+   2- Specify an **early termination policy**: Among three types, we decided to work with the _Bandit Policy_, classified as an aggressive saving, as it will terminate any job based on a _slack_ criteria, and a _frequency_ and _delay_ interval for evaluation. <br>
    
    - slack_factor: Specified as a ratio used to calculate the allowed distance from the best performing experiment run.<br>
    - evaluation_interval: Reflects the frequency for applying the policy.<br>
    - delay_evaluation: Reflects the number of intervals for which to delay the first policy evaluation.<br>
       
-   3 - Create a SKLearn estimator to use later within the HyperDriveConfig definition.<br>
+   3 - Create a SKLearn **estimator** to use later within the HyperDriveConfig definition.<br>
    The estimator contains the _source directory_ The path to the script directory, the _compute target_, and the _entry script_ The name of the script to use along with the experiment. <br>
    
-After creating the HyperDriveConfig using the mentioned above parameters, we submit the experiment by specifying the recently created HyeperDrive configuration.<br>
+After creating the **HyperDriveConfig** using the mentioned above parameters, we submit the experiment by specifying the recently created HyeperDrive configuration.<br>
 
  ### **Model Deployment:** <br>
  This phase is related to provisioning, visioning, access control, and scaling. However, as a first project, we focused on the registration of the  best-run model and how to explore its different metrics and features using Microsoft Azure ML studio tools.<br>
@@ -59,10 +59,10 @@ And since it's directly related to CI/CD concept with Azure, we can proceed with
 
 When we talk about using a parameter sampler, we need to highlight two steps:
 
-   - **The hyperparameter type: Discrete or Continuous?** In our case, we used the discrete type because this project is about categorization. 
+   - **The hyperparameter type: Discrete or Continuous?** In our case, we used the discrete type because this project is about categorization. <br>
    - **The sampling type: Grid or Random or Bayesian sampling?** Based on the previous workshops, both grid and random yielded good results. However, and because all our hyperparameters values are discrete, we must apply the grid sampling.<br>
   
-For this project's search space definition, I used  _C_ and _iter_max_ hyperparameters and created for each a dictionary with the appropriate parameter expression.
+For this project search space definition, I used  _C_ and _iter_max_ hyperparameters and created for each a dictionary with the appropriate parameter expression.
 
 That being said, parameter sampler benefits are:<br>
 
@@ -70,6 +70,12 @@ That being said, parameter sampler benefits are:<br>
    - Decrease the process of computing expenses, errors, and trials' number.
 
 **What are the benefits of the early stopping policy you chose?**
+As explained above, the early termination policy aims to terminate poorly performing runs automatically. Azure ML supports three types:
+
+   - Median Stopping policy: Based on running averages of primary metrics reported by the runs. <br>
+   - Truncation selection policy: Cancels a percentage of lowest-performing runs at each evaluation interval.<br> It's an aggressive saving mode with a bit of fairness on how and if it would terminate the job based on a given percentage and compared to other runs within the same time interval.
+   - Bandit policy: Based on slack factor/slack amount and evaluation interval. I used this type of termination policy because I wanted an **aggressive strict saving mode** that terminates the job if it doesn't apply with the specified slack.<br>
+If no policy is specified, the hyperparameter tuning service will let all training runs execute to completion.
 
 ## AutoML
 **In 1-2 sentences, describe the model and hyperparameters generated by AutoML.**
