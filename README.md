@@ -31,7 +31,7 @@ The problem with manually handling predictions is the time lost while trying to 
 Hence, the benefit of Azure HyperDrive is finding the perfect fit by tuning the hyperdrive parameters among a pre-specified random set of your choice.<br>
 
 ### **Data Training & Validation:** <br>
-This phase is a repeatable one as it will be running for each run of the experiment, specifying a random hyperparameter from a given list.
+This is a repeatable process for each run of the experiment, specifying a random hyperparameter from a given list of choices.
 To prepare the HyperDrive configuration, we need to set three major parameters including:<br>
 
    1- Specify a parameter sampler: since we are using the SKLearn _LogisticRegression classifier_  we will be using:<br>
