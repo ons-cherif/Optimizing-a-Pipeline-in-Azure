@@ -40,9 +40,10 @@ To prepare the HyperDrive configuration, we need to set three major parameters i
    - And, the maximum number of iterations taken for the solvers to converge _**max_iter**_ <br>
       
    2- Specify an early termination policy: Among three types, we decided to work with the _Bandit Policy_, classified as an aggressive saving, as it will terminate any job based on a _slack_ criteria, and a _frequency_ and _delay_ interval for evaluation. <br>
-      - slack_factor: Specified as a ratio used to calculate the allowed distance from the best performing experiment run.<br>
-      - evaluation_interval: Reflects the frequency for applying the policy.<br>
-      - delay_evaluation: Reflects the number of intervals for which to delay the first policy evaluation.<br>
+   
+   - slack_factor: Specified as a ratio used to calculate the allowed distance from the best performing experiment run.<br>
+   - evaluation_interval: Reflects the frequency for applying the policy.<br>
+   - delay_evaluation: Reflects the number of intervals for which to delay the first policy evaluation.<br>
       
    3 - Create a SKLearn estimator to use later within the HyperDriveConfig definition.<br>
    The estimator contains the _source directory_ The path to the script directory, the _compute target_, and the _entry script_ The name of the script to use along with the experiment. <br>
