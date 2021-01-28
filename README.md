@@ -124,10 +124,10 @@ Comparing the two models and their performance, I spotted that :
 Here screenshots showing the best models' accuracy for both methods:
 
 
-![alt_text](HyperDriveBestResult.PNG)
+![alt_text](HyperDriveBestResult.png)
 
 
-![alt_text](AutoMLBestResult.PNG)
+![alt_text](AutoMLBestResult.png)
 
 
 ## Future work
