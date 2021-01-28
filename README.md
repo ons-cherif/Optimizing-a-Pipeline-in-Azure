@@ -91,7 +91,7 @@ Below some screenshots of the generated **interactive report** using the _pandas
 ![alt_text](PandasProfilingOverview.PNG)
 
 
-![alt_text](CorrelationOverview.PNG)
+![alt_text](CorrelationsOverview.PNG)
 
 
 To submit an experiment using Azure ML SDK, you need to set an AutoML configuration using the **AutoMLConfig** class.
@@ -110,7 +110,7 @@ The **AutoMLConfig** class holds a wide range of optional and required parameter
 The below screenshot is the models' list resulting from the run experiment using AutoML:
 
 
-![alt_text](AutomlModelsList.PNG)
+![alt_text](AutomlModelsList.png)
 
 
 ## Pipeline comparison
