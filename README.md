@@ -91,26 +91,27 @@ Below some screenshots of the generated **interactive report** using the _pandas
 ![alt_text](PandasProfilingOverview.PNG)
 
 
-![alt_text](CorrelationOverview.PNG)
+![alt_text](CorrelationsOverview.PNG)
 
 
 To submit an experiment using Azure ML SDK, you need to set an AutoML configuration using the **AutoMLConfig** class.
 
-The **AutoMLConfig** class holds a wide range of optional and required parameters. The ones I used for are:<br>
-    - _experiment_timeout_minutes_: Maximum time in minutes that each iteration can run for before it terminates. .<br>
-    - _task_:  The type of task to run: regression, classification or forecasting. <br>
-    - _primary_metric_: The metric to be optimized for model selection. <br>
-    - _training_data_: Data to train the autoML.<br>
-    - _label_column_name_: The name of the output label column.<br>
-    - n_cross_validations: How many cross-validations to perform when user validation data is not specified. <br>
-    - _iterations_: The total number of different algorithm and parameter combinations to test during an automated ML experiment.<br>
-    - _max_concurrent_iterations_: Represents the maximum number of simultaneously executed iterations.<br>
-    - _compute_target_: The compute target to run the experiment on.<br>
+The **AutoMLConfig** class holds a wide range of optional and required parameters.For this project I used: <br>
+
+   - _experiment_timeout_minutes_: Maximum time in minutes that each iteration can run for before it terminates. .<br>
+   - _task_:  The type of task to run: regression, classification or forecasting. <br>
+   - _primary_metric_: The metric to be optimized for model selection. <br>
+   - _training_data_: Data to train the autoML.<br>
+   - _label_column_name_: The name of the output label column.<br>
+   - n_cross_validations: How many cross-validations to perform when user validation data is not specified. <br>
+   - _iterations_: The total number of different algorithm and parameter combinations to test during an automated ML experiment.<br>
+   - _max_concurrent_iterations_: Represents the maximum number of simultaneously executed iterations.<br>
+   - _compute_target_: The compute target to run the experiment on.<br>
 
 The below screenshot is the models' list resulting from the run experiment using AutoML:
 
 
-![alt_text](AutomlModelsList.PNG)
+![alt_text](AutomlModelsList.png)
 
 
 ## Pipeline comparison
