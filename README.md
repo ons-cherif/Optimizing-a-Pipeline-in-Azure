@@ -115,7 +115,20 @@ The below screenshot is the models' list resulting from the run experiment using
 
 
 ## Pipeline comparison
-**Compare the two models and their performance. What are the differences in accuracy? In architecture? If there was a difference, why do you think there was one?**
+**Compare the two models and their performance. What are the differences in the accuracy? In architecture? If there was a difference, why do you think there was one?**
+
+Comparing the two models and their performance, I spotted that :
+
+   - The best accuracy using  Azure HyperDrive is 0.909, which is pretty good but slightly different from AutoML's best result: 0.917.<br>  In fact, AutoML's accuracy is better because it uses a wide range of complex algorithms, which is hard to do using HyperDrive because we will need a different pipeline for each model.<br>
+   
+Here screenshots showing the best models' accuracy for both methods:
+
+
+![alt_text](HyperDriveBestResult.PNG)
+
+
+![alt_text](AutoMLBestResult.PNG)
+
 
 ## Future work
 **What are some areas of improvement for future experiments? Why might these improvements help the model?**
